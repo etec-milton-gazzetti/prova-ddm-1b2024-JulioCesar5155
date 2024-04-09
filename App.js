@@ -1,20 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 import { NavigationContainer, getStateFromPath } from '@react-navigation/native';
+import icon from './img/espartaa.png'
+import icon2 from './img/icon.png'
+import icon3 from './img/perg.png'
+
+
 
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>História</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('About')} style={{backgroundColor: 'blue', color: 'white', padding: 14, borderRadius: 20 }}>
-        <Text style={{color: 'white',}}>Ir para Sobre</Text>
+      <Text style={{textAlign: 'center', fontSize: 30, fontStyle: "italic", fontWeight: 'bold'}}>Batalha de Termópilas {'\n'}
+                História</Text>
+      <Image style={{ width: 200, height: 200 }} source={icon}></Image>
+    
+      <View style={{flexDirection: 'row'}}>
+      <TouchableOpacity onPress={() => navigation.navigate('About')} style={{color: 'white',marginLeft: 15 }}>
+        <Image source={icon3} style={{width: 80, height: 80}}></Image>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Histórico')} style={{ color: 'white', }}>
+        <Image source={icon2} style={{width: 140, height: 80}}></Image>
+      </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
 function AboutScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Sobre mim</Text>
+      <TouchableOpacity  onPress={() => navigation.goBack()}>
+        <Text>Voltar</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+function HistScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Sobre mim</Text>
@@ -32,6 +55,7 @@ export default function App() {
     <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="About" component={AboutScreen} />
+      <Stack.Screen name="Histórico" component={HistScreen} />
     </Stack.Navigator>
   </NavigationContainer>
   );
